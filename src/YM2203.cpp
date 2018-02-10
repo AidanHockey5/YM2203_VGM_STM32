@@ -48,22 +48,34 @@ void YM2203::WriteDataPins(unsigned char data) //Digital I/O
 void YM2203::SendDataPins(unsigned char addr, unsigned char data)
 {
         
-        digitalWrite(_CS, HIGH);
-        digitalWrite(_RD, HIGH);
-        digitalWrite(_WR, LOW);
-        digitalWrite(_A0, LOW);
-        WriteDataPins(addr);
-        digitalWrite(_CS, LOW);
-        delayMicroseconds(1); //Replace with 10 nS delay?
-        digitalWrite(_CS, HIGH);
-        digitalWrite(_RD, HIGH);
-        digitalWrite(_WR, LOW);
-        digitalWrite(_A0, HIGH);
-        WriteDataPins(data);
-        digitalWrite(_CS, LOW);
-        delayMicroseconds(1); //Replace with 10 nS delay?
-        digitalWrite(_CS, HIGH);
-        digitalWrite(_RD, LOW);
-        digitalWrite(_WR, HIGH);
-        digitalWrite(_A0, HIGH);
+        
+    digitalWrite(_CS, HIGH);
+    digitalWrite(_RD, HIGH);
+    digitalWrite(_WR, LOW);
+    digitalWrite(_A0, LOW);
+    WriteDataPins(addr);
+    digitalWrite(_CS, LOW);
+
+
+    delayMicroseconds(1); //Replace with 10 nS delay?
+    digitalWrite(_CS, HIGH);
+    digitalWrite(_RD, HIGH);
+    digitalWrite(_WR, LOW);
+    digitalWrite(_A0, HIGH);
+    WriteDataPins(data);
+    digitalWrite(_CS, LOW);
+
+
+    // delayMicroseconds(1); //Replace with 10 nS delay?
+    // digitalWrite(_CS, HIGH);
+    // digitalWrite(_RD, LOW);
+    // digitalWrite(_WR, HIGH);
+    // digitalWrite(_A0, HIGH);
+    //delayMicroseconds(1);
+    //digitalWrite(_CS, LOW);
+    delayMicroseconds(1);
+    digitalWrite(_CS, HIGH);
+    digitalWrite(_RD, LOW);
+    digitalWrite(_WR, HIGH);
+    digitalWrite(_A0, HIGH);
 }
