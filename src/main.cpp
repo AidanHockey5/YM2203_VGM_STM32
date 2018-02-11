@@ -2,19 +2,19 @@
 #include "YM2203.h"
 #include "SdFat.h"
 
-const int debugLED = PB12;
+//const int debugLED = PB12;
 
-LTC6903 masterClock(11, 957, PB0);
+LTC6903 masterClock(11, 957, PB0); //11, 957
 
 SdFat SD;
 File vgm;
 
-int YM_Datapins[8] = {PA15, PB3, PB4, PB5, PB6, PB7, PB8, PB9};
-const int YM_CS = PA2;
-const int YM_RD = PA1;
+int YM_Datapins[8] = {PB12, PB13, PB14, PB15, PA8, PB7, PB8, PB9};
+const int YM_CS = PB1;
+const int YM_RD = PB10;
 const int YM_WR = PA0;
-const int YM_A0 = PC15;
-const int YM_IC = PC14; 
+const int YM_A0 = PA1;
+const int YM_IC = PA12; 
 const int YM_IRQ = NULL;
 
 YM2203 ym2203(YM_Datapins, YM_CS, YM_RD, YM_WR, YM_A0, YM_IRQ, YM_IC);
@@ -347,14 +347,7 @@ void StartupSequence(StartUpProfile sup, String request = "")
   vgm = SD.open(fileName, FILE_READ);
   if(!vgm)
   {
-    while(true)
-    {
-        Serial.println("File open failed!");
-        digitalWrite(debugLED, HIGH);
-        delay(150);
-        digitalWrite(debugLED, LOW);
-        delay(150);
-    }
+    Serial.println("File open failed!");
   }
   else
     Serial.println("Opened successfully...");
@@ -387,7 +380,6 @@ void setup()
     // pinMode(shuf_btn, INPUT_PULLUP);
     masterClock.Set();
     Serial.begin(9600);
-    pinMode(debugLED, OUTPUT);
     ym2203.Reset();
     if(!SD.begin())
     {
