@@ -13,7 +13,7 @@ int YM_Datapins[8] = {PB12, PB13, PB14, PB15, PA8, PB7, PB8, PB9};
 const int YM_CS = PB1;
 const int YM_RD = PB10;
 const int YM_WR = PA0;
-const int YM_A0 = PA1;
+const int YM_A0 = PB6;
 const int YM_IC = PA12; 
 const int YM_IRQ = NULL;
 
@@ -378,6 +378,9 @@ void setup()
     // pinMode(next_btn, INPUT_PULLUP);
     // pinMode(loop_btn, INPUT_PULLUP);
     // pinMode(shuf_btn, INPUT_PULLUP);
+
+
+
     masterClock.Set();
     Serial.begin(9600);
     ym2203.Reset();
@@ -396,6 +399,9 @@ void setup()
     countFile.close();
     SD.vwd()->rewind();
     StartupSequence(FIRST_START);
+
+
+
 }
 
 
