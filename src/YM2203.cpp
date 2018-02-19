@@ -12,6 +12,7 @@ YM2203::YM2203(int * dataPins, int CS, int RD, int WR, int A0, int IRQ, int IC)
     for(int i = 0; i<8; i++)
     {
         pinMode(*(_dataPins+i), OUTPUT);
+        digitalWrite(*(_dataPins+i), LOW);
     }
 
     pinMode(_CS, OUTPUT);
